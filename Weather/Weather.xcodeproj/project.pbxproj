@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BB8AA5942BFED35500EDF7A4 /* YumemiWeather in Frameworks */ = {isa = PBXBuildFile; productRef = BB8AA5932BFED35500EDF7A4 /* YumemiWeather */; };
+		BB8AA5962BFEFC6100EDF7A4 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8AA5952BFEFC6100EDF7A4 /* LaunchViewController.swift */; };
 		BBF545052BFDC412007B5862 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF545042BFDC412007B5862 /* AppDelegate.swift */; };
 		BBF545072BFDC412007B5862 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF545062BFDC412007B5862 /* SceneDelegate.swift */; };
 		BBF545092BFDC412007B5862 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF545082BFDC412007B5862 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB8AA5952BFEFC6100EDF7A4 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		BBF545012BFDC412007B5862 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBF545042BFDC412007B5862 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBF545062BFDC412007B5862 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				BBF545042BFDC412007B5862 /* AppDelegate.swift */,
 				BBF545062BFDC412007B5862 /* SceneDelegate.swift */,
 				BBF545082BFDC412007B5862 /* ViewController.swift */,
+				BB8AA5952BFEFC6100EDF7A4 /* LaunchViewController.swift */,
 				BBF5450A2BFDC412007B5862 /* Main.storyboard */,
 				BBF5450D2BFDC413007B5862 /* Assets.xcassets */,
 				BBF5450F2BFDC413007B5862 /* LaunchScreen.storyboard */,
@@ -149,6 +152,7 @@
 				BBF545092BFDC412007B5862 /* ViewController.swift in Sources */,
 				BBF545052BFDC412007B5862 /* AppDelegate.swift in Sources */,
 				BBF545072BFDC412007B5862 /* SceneDelegate.swift in Sources */,
+				BB8AA5962BFEFC6100EDF7A4 /* LaunchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

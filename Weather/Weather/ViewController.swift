@@ -22,6 +22,10 @@ class ViewController: UIViewController {
         setWeatherType()
     }
     
+    @IBAction func btnClose(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
     func setWeatherType() {
         let fetchWeatherString = YumemiWeather.fetchWeatherCondition()
         
