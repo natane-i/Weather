@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BB8AA5942BFED35500EDF7A4 /* YumemiWeather in Frameworks */ = {isa = PBXBuildFile; productRef = BB8AA5932BFED35500EDF7A4 /* YumemiWeather */; };
 		BB8AA5962BFEFC6100EDF7A4 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8AA5952BFEFC6100EDF7A4 /* LaunchViewController.swift */; };
+		BBD2D2622C0028490032E31D /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD2D2612C0028490032E31D /* Weather.swift */; };
 		BBF545052BFDC412007B5862 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF545042BFDC412007B5862 /* AppDelegate.swift */; };
 		BBF545072BFDC412007B5862 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF545062BFDC412007B5862 /* SceneDelegate.swift */; };
 		BBF545092BFDC412007B5862 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF545082BFDC412007B5862 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		BB8AA5952BFEFC6100EDF7A4 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		BBD2D2612C0028490032E31D /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		BBF545012BFDC412007B5862 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBF545042BFDC412007B5862 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBF545062BFDC412007B5862 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				BBF545082BFDC412007B5862 /* ViewController.swift */,
 				BB8AA5952BFEFC6100EDF7A4 /* LaunchViewController.swift */,
 				BBF5450A2BFDC412007B5862 /* Main.storyboard */,
+				BBD2D2612C0028490032E31D /* Weather.swift */,
 				BBF5450D2BFDC413007B5862 /* Assets.xcassets */,
 				BBF5450F2BFDC413007B5862 /* LaunchScreen.storyboard */,
 				BBF545122BFDC413007B5862 /* Info.plist */,
@@ -153,6 +156,7 @@
 				BBF545052BFDC412007B5862 /* AppDelegate.swift in Sources */,
 				BBF545072BFDC412007B5862 /* SceneDelegate.swift in Sources */,
 				BB8AA5962BFEFC6100EDF7A4 /* LaunchViewController.swift in Sources */,
+				BBD2D2622C0028490032E31D /* Weather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
