@@ -9,14 +9,14 @@ import Foundation
 import YumemiWeather
 
 protocol YumemiDelegate {
-    func setWeatherImage(type: String)
+    func setWeatherType(type: String)
 }
 
 class WeatherDetail {
     var delegate: YumemiDelegate?
     
-    func setWeatherImage() -> String {
+    func setWeatherType() {
         let fetchWeatherString = YumemiWeather.fetchWeatherCondition()
-        return fetchWeatherString
+        delegate?.setWeatherType(type: fetchWeatherString)
     }
 }

@@ -8,30 +8,33 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    let weatherDetail = WeatherDetail()
+    
     @IBOutlet weak var weatherImageView: UIImageView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        weatherDetail.delegate = self
     }
-
+    
     @IBAction func btnReload(_ sender: Any) {
-        setWeatherType()
+        weatherDetail.setWeatherType()
     }
     
     @IBAction func btnClose(_ sender: Any) {
         self.dismiss(animated: true)
     }
+}
+
+extension ViewController: YumemiDelegate {
     
-    let weatherDetail = WeatherDetail()
-    
-    func setWeatherType() {
+    func setWeatherType(type: String) {
         var weatherName = "sunny"
         var tintColor = UIColor.red
         
-        let weatherType = weatherDetail.setWeatherImage()
-        
-        switch weatherType {
+        switch type {
         case "sunny":
             weatherName = "sunny"
             tintColor = UIColor.red
