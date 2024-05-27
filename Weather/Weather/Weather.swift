@@ -16,12 +16,22 @@ protocol YumemiDelegate {
 class WeatherDetail {
     var delegate: YumemiDelegate?
     
+    let requestJson = """
+        {
+            "area": "Tokyo",
+            "date": "2020-04-01T12:00:00+09:00"
+        }
+    """
+    
     func setWeatherType() {
         do {
-            let fetchWeatherString = try YumemiWeather.fetchWeatherCondition(at: "")
+            let fetchWeatherString = try YumemiWeather.fetchWeather(requestJson)
+            print(fetchWeatherString)
             self.delegate?.setWeatherType(type: fetchWeatherString)
         } catch {
             self.delegate?.handleError(alert: "エラー　a1234")
         }
     }
 }
+
+
