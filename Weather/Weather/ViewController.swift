@@ -25,6 +25,8 @@ class ViewController: UIViewController {
     
     @IBAction func btnClose(_ sender: Any) {
         self.dismiss(animated: true)
+        
+
     }
 }
 
@@ -52,6 +54,16 @@ extension ViewController: YumemiDelegate {
         weatherImageView.tintColor = tintColor
         
     }
+    
+    func handleError(alert: String) {
+//        print(error.localizedDescription)
+        let alertMessage = UIAlertController(title: "\(alert)", message: "時間をおいて再度お試しください", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertMessage.addAction(okAction)
+        present(alertMessage, animated: true, completion: nil)
+    }
+    
+    
 
 }
 
