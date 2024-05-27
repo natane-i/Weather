@@ -8,13 +8,13 @@
 import Foundation
 import YumemiWeather
 
-protocol YumemiDelegate {
-    func setWeatherType(type: String)
-    func handleError(alert: String)
+protocol WeatherDelegate {
+    func setWeatherType(type: Any)
+    func setWeatherError(alert: String)
 }
 
 class WeatherDetail {
-    var delegate: YumemiDelegate?
+    var delegate: WeatherDelegate?
     
     let requestJson = """
         {
@@ -26,12 +26,20 @@ class WeatherDetail {
     func setWeatherType() {
         do {
             let fetchWeatherString = try YumemiWeather.fetchWeather(requestJson)
-            print(fetchWeatherString)
-            self.delegate?.setWeatherType(type: fetchWeatherString)
+            guard let jsonData = fetchWeatherString.data(using: .utf8),
+                  let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any],
+                  let maxTemp = jsonObject["max_temperature"] as? Int,
+                  let minTemp = jsonObject["min_temperature"] as? Int,
+                  let weather = jsonObject["weather_condition"] as? String else {
+                return
+            }
+            
+            self.delegate?.setWeatherType(type: maxTemp)
+            self.delegate?.setWeatherType(type: minTemp)
+            self.delegate?.setWeatherType(type: weather)
         } catch {
-            self.delegate?.handleError(alert: "エラー　a1234")
+            self.delegate?.setWeatherError(alert: "エラー　a1234")
         }
     }
 }
-
 
