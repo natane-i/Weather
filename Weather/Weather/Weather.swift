@@ -9,7 +9,9 @@ import Foundation
 import YumemiWeather
 
 protocol WeatherDelegate {
-    func setWeatherType(type: Any)
+    func setWeatherType(type: String)
+    func setWeatherMaxTemp(type: Int)
+    func setWeatherMinTemp(type: Int)
     func setWeatherError(alert: String)
 }
 
@@ -30,12 +32,13 @@ class WeatherDetail {
                   let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any],
                   let maxTemp = jsonObject["max_temperature"] as? Int,
                   let minTemp = jsonObject["min_temperature"] as? Int,
-                  let weather = jsonObject["weather_condition"] as? String else {
+                  let weather = jsonObject["weather_condition"] as? String
+            else {
                 return
             }
             
-            self.delegate?.setWeatherType(type: maxTemp)
-            self.delegate?.setWeatherType(type: minTemp)
+            self.delegate?.setWeatherMaxTemp(type: maxTemp)
+            self.delegate?.setWeatherMinTemp(type: minTemp)
             self.delegate?.setWeatherType(type: weather)
         } catch {
             self.delegate?.setWeatherError(alert: "エラー　a1234")

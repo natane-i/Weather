@@ -101,6 +101,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="EIN-Of-Ook"/>
                     <connections>
+                        <outlet property="maxTempLabel" destination="pMh-5H-7YA" id="YfT-Ju-TmW"/>
+                        <outlet property="minTempLabel" destination="Ee4-Vf-Ksd" id="3C8-u4-6Pf"/>
                         <outlet property="weatherImageView" destination="ouO-eM-7SC" id="EKv-78-v8e"/>
                     </connections>
                 </viewController>

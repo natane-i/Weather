@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     let weatherDetail = WeatherDetail()
     
     @IBOutlet weak var weatherImageView: UIImageView!
+    @IBOutlet weak var minTempLabel: UILabel!
+    @IBOutlet weak var maxTempLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,9 +49,17 @@ extension ViewController: WeatherDelegate {
         default:
             break
         }
-
+        
         weatherImageView.image = UIImage(named: weatherName)
         weatherImageView.tintColor = tintColor
+    }
+    
+    func setWeatherMaxTemp(type: Int) {
+        maxTempLabel.text = "\(type)℃"
+    }
+    
+    func setWeatherMinTemp(type: Int) {
+        minTempLabel.text = "\(type)℃"
     }
     
     func setWeatherError(alert: String) {
@@ -58,6 +68,7 @@ extension ViewController: WeatherDelegate {
         alertMessage.addAction(okAction)
         present(alertMessage, animated: true, completion: nil)
     }
-
+    
 }
+
 
