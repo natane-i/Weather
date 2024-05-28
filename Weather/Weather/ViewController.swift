@@ -32,11 +32,11 @@ class ViewController: UIViewController {
 
 extension ViewController: WeatherDelegate {
     
-    func setWeatherType(type: String) {
+    func setWeather(weather: Weather) {
         var weatherName = "sunny"
         var tintColor = UIColor.red
         
-        switch type {
+        switch weather.weatherCondition{
         case "sunny":
             weatherName = "sunny"
             tintColor = UIColor.red
@@ -52,14 +52,9 @@ extension ViewController: WeatherDelegate {
         
         weatherImageView.image = UIImage(named: weatherName)
         weatherImageView.tintColor = tintColor
-    }
-    
-    func setWeatherMaxTemp(type: Int) {
-        maxTempLabel.text = "\(type)℃"
-    }
-    
-    func setWeatherMinTemp(type: Int) {
-        minTempLabel.text = "\(type)℃"
+        
+        maxTempLabel.text = String("\(weather.maxTemp)℃")
+        minTempLabel.text = String("\(weather.minTemp)℃")
     }
     
     func setWeatherError(alert: String) {
