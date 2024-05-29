@@ -86,21 +86,27 @@
                                     <action selector="btnReload:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FbQ-9u-Nax"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="AiF-Jh-El1">
+                                <rect key="frame" x="186.66666666666666" y="569.66666666666663" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="YM4-sv-jMB" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.5" id="8qi-bw-ROL"/>
+                            <constraint firstItem="AiF-Jh-El1" firstAttribute="top" secondItem="YM4-sv-jMB" secondAttribute="bottom" constant="35" id="Nqg-zT-f18"/>
                             <constraint firstItem="KNF-jj-ktp" firstAttribute="top" secondItem="x9I-eo-S7W" secondAttribute="top" id="PNe-dR-Z8y"/>
                             <constraint firstItem="YM4-sv-jMB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VmE-y4-D1N"/>
                             <constraint firstItem="x9I-eo-S7W" firstAttribute="top" secondItem="YM4-sv-jMB" secondAttribute="bottom" constant="80" id="Xn6-FR-iWz"/>
                             <constraint firstItem="KNF-jj-ktp" firstAttribute="centerX" secondItem="pMh-5H-7YA" secondAttribute="centerX" id="Ypp-zI-2PJ"/>
+                            <constraint firstItem="AiF-Jh-El1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ech-cg-sC0"/>
                             <constraint firstItem="YM4-sv-jMB" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fdk-W1-tMF"/>
                             <constraint firstItem="x9I-eo-S7W" firstAttribute="centerX" secondItem="Ee4-Vf-Ksd" secondAttribute="centerX" id="xcv-pZ-jWz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EIN-Of-Ook"/>
                     <connections>
+                        <outlet property="indicator" destination="AiF-Jh-El1" id="AVv-X4-p8A"/>
                         <outlet property="maxTempLabel" destination="pMh-5H-7YA" id="YfT-Ju-TmW"/>
                         <outlet property="minTempLabel" destination="Ee4-Vf-Ksd" id="3C8-u4-6Pf"/>
                         <outlet property="weatherImageView" destination="ouO-eM-7SC" id="EKv-78-v8e"/>

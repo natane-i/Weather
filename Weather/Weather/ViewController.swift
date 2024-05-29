@@ -14,14 +14,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var minTempLabel: UILabel!
     @IBOutlet weak var maxTempLabel: UILabel!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         weatherDetail.delegate = self
+        indicator.isHidden = true
     }
     
     @IBAction func btnReload(_ sender: Any) {
+        indicator.isHidden = false
+        indicator.startAnimating()
         weatherDetail.setWeatherType()
     }
     
@@ -50,20 +54,29 @@ extension ViewController: WeatherDelegate {
             break
         }
         
-        weatherImageView.image = UIImage(named: weatherName)
-        weatherImageView.tintColor = tintColor
-        
-        maxTempLabel.text = String("\(weather.maxTemp)℃")
-        minTempLabel.text = String("\(weather.minTemp)℃")
+        DispatchQueue.main.async {
+            self.indicator.stopAnimating()
+            self.indicator.isHidden = true
+            
+            self.weatherImageView.image = UIImage(named: weatherName)
+            self.weatherImageView.tintColor = tintColor
+            
+            self.maxTempLabel.text = String("\(weather.maxTemp)℃")
+            self.minTempLabel.text = String("\(weather.minTemp)℃")
+        }
     }
     
     func setWeatherError(alert: String) {
         let alertMessage = UIAlertController(title: "\(alert)", message: "時間をおいて再度お試しください", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertMessage.addAction(okAction)
-        present(alertMessage, animated: true, completion: nil)
+        
+        DispatchQueue.main.async {
+            self.indicator.stopAnimating()
+            self.indicator.isHidden = true
+            self.present(alertMessage, animated: true, completion: nil)
+        }
     }
-    
 }
 
 
