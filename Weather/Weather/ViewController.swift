@@ -24,64 +24,66 @@ class ViewController: UIViewController {
     }
     
     @IBAction func btnReload(_ sender: Any) {
-        indicator.startAnimating()
-        fetchWeather()
+        reloadWeather()
     }
     
     @IBAction func btnClose(_ sender: Any) {
         self.dismiss(animated: true)
     }
     
-    func fetchWeather() {
-        weatherDetail.setWeatherType { result in
-            switch result {
-            case .success(let weather):
-                self.setWeather(weather: weather)
-            case .failure(_):
-                self.setWeatherError(alert: "エラー　a1234")
+    func reloadWeather() {
+        DispatchQueue.main.async {
+            self.indicator.startAnimating()
+            self.weatherDetail.setWeatherType { result in
+                switch result {
+                case .success(let weather):
+                    self.setWeather(weather: weather)
+                case .failure(let error):
+                    self.setWeatherError(alert: "Error: \(error.localizedDescription)")
+                }
             }
         }
     }
-
-    func setWeather(weather: Weather) {
-        var weatherName = "sunny"
-        var tintColor = UIColor.red
-
-        switch weather.weatherCondition{
-        case "sunny":
-            weatherName = "sunny"
-            tintColor = UIColor.red
-        case "cloudy":
-            weatherName = "cloudy"
-            tintColor = UIColor.gray
-        case "rainy":
-            weatherName = "rainy"
-            tintColor = UIColor.blue
-        default:
-            break
+        
+        func setWeather(weather: Weather) {
+            var weatherName = "sunny"
+            var tintColor = UIColor.red
+            
+            switch weather.weatherCondition{
+            case "sunny":
+                weatherName = "sunny"
+                tintColor = UIColor.red
+            case "cloudy":
+                weatherName = "cloudy"
+                tintColor = UIColor.gray
+            case "rainy":
+                weatherName = "rainy"
+                tintColor = UIColor.blue
+            default:
+                break
+            }
+            
+            DispatchQueue.main.async {
+                self.indicator.stopAnimating()
+                self.indicator.isHidden = true
+                
+                self.weatherImageView.image = UIImage(named: weatherName)
+                self.weatherImageView.tintColor = tintColor
+                
+                self.maxTempLabel.text = String("\(weather.maxTemp)℃")
+                self.minTempLabel.text = String("\(weather.minTemp)℃")
+            }
         }
-
-        DispatchQueue.main.async {
-            self.indicator.stopAnimating()
-            self.indicator.isHidden = true
-
-            self.weatherImageView.image = UIImage(named: weatherName)
-            self.weatherImageView.tintColor = tintColor
-
-            self.maxTempLabel.text = String("\(weather.maxTemp)℃")
-            self.minTempLabel.text = String("\(weather.minTemp)℃")
+        
+        func setWeatherError(alert: String) {
+            let alertMessage = UIAlertController(title: "\(alert)", message: "時間をおいて再度お試しください", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertMessage.addAction(okAction)
+            
+            DispatchQueue.main.async {
+                self.indicator.stopAnimating()
+                self.indicator.isHidden = true
+                self.present(alertMessage, animated: true, completion: nil)
+            }
         }
     }
-
-    func setWeatherError(alert: String) {
-        let alertMessage = UIAlertController(title: "\(alert)", message: "時間をおいて再度お試しください", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertMessage.addAction(okAction)
-
-        DispatchQueue.main.async {
-            self.indicator.stopAnimating()
-            self.indicator.isHidden = true
-            self.present(alertMessage, animated: true, completion: nil)
-        }
-    }
-}
