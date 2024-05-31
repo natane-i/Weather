@@ -19,27 +19,34 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        weatherDetail.delegate = self
-        indicator.isHidden = true
+        //        weatherDetail.delegate = self
+        indicator.hidesWhenStopped = true
     }
     
     @IBAction func btnReload(_ sender: Any) {
-        indicator.isHidden = false
         indicator.startAnimating()
-        weatherDetail.setWeatherType()
+        fetchWeather()
     }
     
     @IBAction func btnClose(_ sender: Any) {
         self.dismiss(animated: true)
     }
-}
-
-extension ViewController: WeatherDelegate {
     
+    func fetchWeather() {
+        weatherDetail.setWeatherType { result in
+            switch result {
+            case .success(let weather):
+                self.setWeather(weather: weather)
+            case .failure(_):
+                self.setWeatherError(alert: "エラー　a1234")
+            }
+        }
+    }
+
     func setWeather(weather: Weather) {
         var weatherName = "sunny"
         var tintColor = UIColor.red
-        
+
         switch weather.weatherCondition{
         case "sunny":
             weatherName = "sunny"
@@ -53,24 +60,24 @@ extension ViewController: WeatherDelegate {
         default:
             break
         }
-        
+
         DispatchQueue.main.async {
             self.indicator.stopAnimating()
             self.indicator.isHidden = true
-            
+
             self.weatherImageView.image = UIImage(named: weatherName)
             self.weatherImageView.tintColor = tintColor
-            
+
             self.maxTempLabel.text = String("\(weather.maxTemp)℃")
             self.minTempLabel.text = String("\(weather.minTemp)℃")
         }
     }
-    
+
     func setWeatherError(alert: String) {
         let alertMessage = UIAlertController(title: "\(alert)", message: "時間をおいて再度お試しください", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertMessage.addAction(okAction)
-        
+
         DispatchQueue.main.async {
             self.indicator.stopAnimating()
             self.indicator.isHidden = true
@@ -78,5 +85,3 @@ extension ViewController: WeatherDelegate {
         }
     }
 }
-
-
