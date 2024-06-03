@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let weatherDetail = WeatherDetail()
+    var weatherInfo: Weather?
     
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var minTempLabel: UILabel!
@@ -19,8 +19,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        weatherDetail.delegate = self
         indicator.hidesWhenStopped = true
+        if let weather = weatherInfo {
+              setWeather(weather: weather)
+          }
     }
     
     @IBAction func btnReload(_ sender: Any) {
@@ -32,58 +34,54 @@ class ViewController: UIViewController {
     }
     
     func reloadWeather() {
-        DispatchQueue.main.async {
-            self.indicator.startAnimating()
-            self.weatherDetail.setWeatherType { result in
-                switch result {
-                case .success(let weather):
-                    self.setWeather(weather: weather)
-                case .failure(let error):
-                    self.setWeatherError(alert: "Error: \(error.localizedDescription)")
-                }
-            }
+        if let weather = self.weatherInfo {
+            self.setWeather(weather: weather)
+        } else {
+            self.setWeatherError(alert: "天気情報が取得できませんでした")
         }
     }
+    
+    
+    func setWeather(weather: Weather) {
+        var weatherName = "sunny"
+        var tintColor = UIColor.red
         
-        func setWeather(weather: Weather) {
-            var weatherName = "sunny"
-            var tintColor = UIColor.red
-            
-            switch weather.weatherCondition{
-            case "sunny":
-                weatherName = "sunny"
-                tintColor = UIColor.red
-            case "cloudy":
-                weatherName = "cloudy"
-                tintColor = UIColor.gray
-            case "rainy":
-                weatherName = "rainy"
-                tintColor = UIColor.blue
-            default:
-                break
-            }
-            
-            DispatchQueue.main.async {
-                self.indicator.stopAnimating()
-                self.indicator.isHidden = true
-                
-                self.weatherImageView.image = UIImage(named: weatherName)
-                self.weatherImageView.tintColor = tintColor
-                
-                self.maxTempLabel.text = String("\(weather.maxTemp)℃")
-                self.minTempLabel.text = String("\(weather.minTemp)℃")
-            }
+        switch weather.weatherCondition{
+        case "sunny":
+            weatherName = "sunny"
+            tintColor = UIColor.red
+        case "cloudy":
+            weatherName = "cloudy"
+            tintColor = UIColor.gray
+        case "rainy":
+            weatherName = "rainy"
+            tintColor = UIColor.blue
+        default:
+            break
         }
         
-        func setWeatherError(alert: String) {
+        DispatchQueue.main.async {
+            self.indicator.stopAnimating()
+            self.indicator.isHidden = true
+            
+            self.weatherImageView.image = UIImage(named: weatherName)
+            self.weatherImageView.tintColor = tintColor
+            
+            self.maxTempLabel.text = String("\(weather.maxTemp)℃")
+            self.minTempLabel.text = String("\(weather.minTemp)℃")
+        }
+    }
+    
+    func setWeatherError(alert: String) {
+        DispatchQueue.main.async {
             let alertMessage = UIAlertController(title: "\(alert)", message: "時間をおいて再度お試しください", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertMessage.addAction(okAction)
             
-            DispatchQueue.main.async {
-                self.indicator.stopAnimating()
-                self.indicator.isHidden = true
-                self.present(alertMessage, animated: true, completion: nil)
-            }
+            self.indicator.stopAnimating()
+            self.indicator.isHidden = true
+            self.present(alertMessage, animated: true, completion: nil)
         }
     }
+    
+}
