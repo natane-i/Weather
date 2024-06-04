@@ -9,18 +9,16 @@ import Foundation
 import YumemiWeather
 
 class WeatherList {
-    func setWeatherType(completion: @escaping (Result<[Weathers], Error>) -> Void) {
+    
+    func setWeatherList(completion: @escaping (Result<[Weathers], Error>) -> Void) {
         DispatchQueue.global().async {
-            let now = Date()
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssXXXXX"
-            let dateString = formatter.string(from: now)
-            //let date = Date().ISO8601Format()
+            let date = Date().ISO8601Format()
+            let sendJsonString = Dates(areas: [], date: date)
             
-            let sendJsonString = Dates(areas: [], date: dateString)
             do {
                 let encoder = JSONEncoder()
                 let jsonData = try encoder.encode(sendJsonString)
+                
                 guard let requestJson = String(data: jsonData, encoding: .utf8) else {
                     return
                 }
@@ -40,4 +38,5 @@ class WeatherList {
             }
         }
     }
+    
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import YumemiWeather
 
 class TableListViewController: UIViewController, UITableViewDataSource {
     
@@ -17,17 +18,16 @@ class TableListViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
-        
+        reloadWeather()
+
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshWeather(_:)), for: .valueChanged)
         tableView.refreshControl = refreshControl
-        
-        reloadWeather()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -70,7 +70,7 @@ class TableListViewController: UIViewController, UITableViewDataSource {
     }
     
     func reloadWeather() {
-        self.weatherList.setWeatherType { [weak self] result in
+        self.weatherList.setWeatherList { [weak self] result in
             guard let strongSelf = self else {
                 return
             }
@@ -103,7 +103,16 @@ class TableListViewController: UIViewController, UITableViewDataSource {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let detailVC = segue.destination as! ViewController
                 let data = weatherData[indexPath.row]
+    
+                guard indexPath.row < Area.allCases.count else {
+                    return
+                }
+                let selectedArea = Area.allCases[indexPath.row]
+                
+                let area = selectedArea.rawValue
+                
                 detailVC.weatherInfo = data.info
+                detailVC.title = area
             }
         }
     }

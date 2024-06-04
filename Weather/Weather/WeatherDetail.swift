@@ -12,7 +12,8 @@ class WeatherDetail {
     
     func setWeatherType(completion: @escaping (Result<Weather, Error>) -> Void) {
         DispatchQueue.global().async {
-            let sendJsonString = SetDate(area: "Tokyo", date: "2020-04-01T12:00:00+09:00")
+            let date = Date().ISO8601Format()
+            let sendJsonString = SetDate(area: "Tokyo", date: date)
             do {
                 let encoder = JSONEncoder()
                 let jsonData = try encoder.encode(sendJsonString)

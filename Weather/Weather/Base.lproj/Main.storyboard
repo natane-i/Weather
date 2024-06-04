@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vmh-q8-vil">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="poF-fT-eIu">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
@@ -23,6 +23,22 @@
             </objects>
             <point key="canvasLocation" x="102" y="-711"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="eRH-Pg-y3I">
+            <objects>
+                <navigationController id="poF-fT-eIu" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hmh-MS-pbZ">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vmh-q8-vil" kind="relationship" relationship="rootViewController" id="YB3-BV-qHm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b5l-nj-RvT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1498" y="4"/>
+        </scene>
         <!--Table List View Controller-->
         <scene sceneID="cUc-n3-OGL">
             <objects>
@@ -32,7 +48,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WUs-WJ-Ka9">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="dMX-gj-jxc" detailTextLabel="PAX-CT-Elh" style="IBUITableViewCellStyleSubtitle" id="Nrz-my-g0d">
@@ -78,6 +94,7 @@
                             <constraint firstItem="WUs-WJ-Ka9" firstAttribute="top" secondItem="Sm5-Df-2zy" secondAttribute="top" id="poe-vV-8gJ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="t6f-Ij-6VE"/>
                     <connections>
                         <outlet property="tableView" destination="WUs-WJ-Ka9" id="LHY-kz-lA8"/>
                     </connections>

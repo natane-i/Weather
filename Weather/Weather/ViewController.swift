@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func btnClose(_ sender: Any) {
-        self.dismiss(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     func reloadWeather() {
@@ -48,7 +48,6 @@ class ViewController: UIViewController {
             }
         }
     }
-    
     
     func setWeather(weather: Weather) {
         var weatherName = "sunny"
