@@ -19,15 +19,22 @@ class TableListViewController: UIViewController, UITableViewDataSource {
         tableView.dataSource = self
         
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(reloadData(_:)), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(refreshWeather(_:)), for: .valueChanged)
         tableView.refreshControl = refreshControl
         
-        fetchWeatherData()
+        reloadWeather()
     }
     
-    @objc func reloadData(_ sender: Any) {
-        fetchWeatherData()
-        tableView.refreshControl?.endRefreshing()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
+    @objc func refreshWeather(_ sender: Any) {
+        reloadWeather()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,17 +69,20 @@ class TableListViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
-    func fetchWeatherData() {
-        self.weatherList.setWeatherType { result in
+    func reloadWeather() {
+        self.weatherList.setWeatherType { [weak self] result in
+            guard let strongSelf = self else {
+                return
+            }
             DispatchQueue.main.async {
                 switch result {
                 case .success(let weathers):
-                    print(weathers)
-                    self.weatherData = weathers
-                    self.tableView.reloadData()
+                    strongSelf.weatherData = weathers
+                    strongSelf.tableView.reloadData()
                 case .failure(let error):
-                    self.setWeatherError(alert: "Error: \(error.localizedDescription)")
+                    strongSelf.setWeatherError(alert: "Error: \(error.localizedDescription)")
                 }
+                strongSelf.tableView.refreshControl?.endRefreshing()
             }
         }
     }
@@ -80,13 +90,12 @@ class TableListViewController: UIViewController, UITableViewDataSource {
     func setWeatherError(alert: String) {
         DispatchQueue.main.async {
             let alertMessage = UIAlertController(title: "\(alert)", message: "時間をおいて再度お試しください", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: { _ in
-                self.fetchWeatherData()
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+                self?.reloadWeather()
             })
             alertMessage.addAction(okAction)
             self.present(alertMessage, animated: true, completion: nil)
         }
-        fetchWeatherData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -99,5 +108,6 @@ class TableListViewController: UIViewController, UITableViewDataSource {
         }
     }
     
-    
 }
+
+

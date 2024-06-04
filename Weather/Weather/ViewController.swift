@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let weatherDetail = WeatherDetail()
     var weatherInfo: Weather?
     
     @IBOutlet weak var weatherImageView: UIImageView!
@@ -21,8 +22,8 @@ class ViewController: UIViewController {
         
         indicator.hidesWhenStopped = true
         if let weather = weatherInfo {
-              setWeather(weather: weather)
-          }
+            setWeather(weather: weather)
+        }
     }
     
     @IBAction func btnReload(_ sender: Any) {
@@ -34,10 +35,17 @@ class ViewController: UIViewController {
     }
     
     func reloadWeather() {
-        if let weather = self.weatherInfo {
-            self.setWeather(weather: weather)
-        } else {
-            self.setWeatherError(alert: "天気情報が取得できませんでした")
+        self.indicator.startAnimating()
+        weatherDetail.setWeatherType { [weak self] result in
+            guard let strongSelf = self else {
+                return
+            }
+            switch result {
+            case .success(let weather):
+                strongSelf.setWeather(weather: weather)
+            case .failure(let error):
+                strongSelf.setWeatherError(alert: "Error: \(error.localizedDescription)")
+            }
         }
     }
     

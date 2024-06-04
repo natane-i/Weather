@@ -11,7 +11,13 @@ import YumemiWeather
 class WeatherList {
     func setWeatherType(completion: @escaping (Result<[Weathers], Error>) -> Void) {
         DispatchQueue.global().async {
-            let sendJsonString = Dates(areas: [], date: "2020-04-01T12:00:00+09:00")
+            let now = Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssXXXXX"
+            let dateString = formatter.string(from: now)
+            //let date = Date().ISO8601Format()
+            
+            let sendJsonString = Dates(areas: [], date: dateString)
             do {
                 let encoder = JSONEncoder()
                 let jsonData = try encoder.encode(sendJsonString)
