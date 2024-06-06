@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -32,7 +33,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="vmh-q8-vil" kind="relationship" relationship="rootViewController" id="YB3-BV-qHm"/>
+                        <segue destination="xyl-6t-SX4" kind="relationship" relationship="rootViewController" id="OeT-IN-kqC"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b5l-nj-RvT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -48,7 +49,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WUs-WJ-Ka9">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="dMX-gj-jxc" detailTextLabel="PAX-CT-Elh" style="IBUITableViewCellStyleSubtitle" id="Nrz-my-g0d">
@@ -102,6 +103,85 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TCX-VQ-5f7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-691" y="4"/>
+        </scene>
+        <!--Collection List View Controller-->
+        <scene sceneID="Gfn-aO-zVQ">
+            <objects>
+                <viewController id="xyl-6t-SX4" customClass="CollectionListViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GGC-UL-PUV">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8RJ-Cg-KZg">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MVE-6a-del">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" reuseIdentifier="Cell" id="4X5-6L-opv" customClass="CollectionViewCell" customModule="Weather" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="TiG-Rg-cSb">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hGx-3C-VfS">
+                                                    <rect key="frame" x="12" y="0.0" width="104" height="104"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="hGx-3C-VfS" secondAttribute="height" multiplier="1:1" id="Rb5-Af-kcN"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyy-Bt-kUF">
+                                                    <rect key="frame" x="0.0" y="107" width="128" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hGx-3C-VfS" firstAttribute="top" secondItem="TiG-Rg-cSb" secondAttribute="top" id="5ph-h6-WQd"/>
+                                                <constraint firstAttribute="trailing" secondItem="cyy-Bt-kUF" secondAttribute="trailing" id="D3m-Xd-hxv"/>
+                                                <constraint firstItem="hGx-3C-VfS" firstAttribute="leading" secondItem="TiG-Rg-cSb" secondAttribute="leading" constant="12" id="Idi-BH-aTg"/>
+                                                <constraint firstItem="cyy-Bt-kUF" firstAttribute="leading" secondItem="TiG-Rg-cSb" secondAttribute="leading" id="QHr-Qd-IJC"/>
+                                                <constraint firstItem="cyy-Bt-kUF" firstAttribute="top" secondItem="hGx-3C-VfS" secondAttribute="bottom" constant="3" id="lXI-Vh-bGm"/>
+                                                <constraint firstAttribute="bottom" secondItem="cyy-Bt-kUF" secondAttribute="bottom" id="ncS-3u-Pki"/>
+                                                <constraint firstAttribute="trailing" secondItem="hGx-3C-VfS" secondAttribute="trailing" constant="12" id="s6B-23-1fd"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="areaName" destination="cyy-Bt-kUF" id="ozo-nA-Cej"/>
+                                            <outlet property="imageView" destination="hGx-3C-VfS" id="BnC-VT-WLK"/>
+                                            <segue destination="BYZ-38-t0r" kind="show" identifier="ToDetail" id="Vix-il-zNs"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="xyl-6t-SX4" id="G7w-5u-KlP"/>
+                                    <outlet property="delegate" destination="xyl-6t-SX4" id="C8R-PJ-1Z6"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="o91-iE-ncv"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="8RJ-Cg-KZg" firstAttribute="trailing" secondItem="o91-iE-ncv" secondAttribute="trailing" id="4vS-6O-cLj"/>
+                            <constraint firstItem="8RJ-Cg-KZg" firstAttribute="bottom" secondItem="o91-iE-ncv" secondAttribute="bottom" id="PsC-bb-3ap"/>
+                            <constraint firstItem="8RJ-Cg-KZg" firstAttribute="top" secondItem="o91-iE-ncv" secondAttribute="top" id="tJ8-Lg-qaT"/>
+                            <constraint firstItem="8RJ-Cg-KZg" firstAttribute="leading" secondItem="o91-iE-ncv" secondAttribute="leading" id="tkm-9N-eCg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="lIU-Ou-fv5"/>
+                    <connections>
+                        <outlet property="collectionView" destination="8RJ-Cg-KZg" id="BUe-UJ-uke"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Q7-0k-I45" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-692.36641221374043" y="737.32394366197184"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -194,6 +274,9 @@
             <point key="canvasLocation" x="101.5267175572519" y="3.5211267605633805"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Vix-il-zNs"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -14,11 +14,9 @@ class WeatherList {
         DispatchQueue.global().async {
             let date = Date().ISO8601Format()
             let sendJsonString = Dates(areas: [], date: date)
-            
             do {
                 let encoder = JSONEncoder()
                 let jsonData = try encoder.encode(sendJsonString)
-                
                 guard let requestJson = String(data: jsonData, encoding: .utf8) else {
                     return
                 }

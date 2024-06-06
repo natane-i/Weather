@@ -1,49 +1,44 @@
 //
-//  TableListViewController.swift
+//  CollectionListViewController.swift
 //  Weather
 //
-//  Created by spark-01 on 2024/06/03.
+//  Created by spark-01 on 2024/06/06.
 //
 
 import UIKit
 import YumemiWeather
 
-class TableListViewController: UIViewController, UITableViewDataSource {
+class CollectionListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     let weatherList = WeatherList()
     var weatherData: [Weathers] = []
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
         reloadWeather()
-
+        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshWeather(_:)), for: .valueChanged)
-        tableView.refreshControl = refreshControl
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if let indexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
+        collectionView.refreshControl = refreshControl
     }
     
     @objc func refreshWeather(_ sender: Any) {
         reloadWeather()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return weatherData.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
+        
         let weather = weatherData[indexPath.row]
+        let areaName = weather.area.rawValue
         
         var weatherName = "sunny"
         var tintColor = UIColor.red
@@ -62,10 +57,11 @@ class TableListViewController: UIViewController, UITableViewDataSource {
             break
         }
         
-        cell.textLabel?.text = weather.area.rawValue
+        cell.areaName?.text = areaName
+        
         cell.imageView?.image = UIImage(named: weatherName)
         cell.imageView?.tintColor = tintColor
-        cell.detailTextLabel?.text = "最高気温：\(weather.info.maxTemp)℃　最低気温：\(weather.info.minTemp)℃"
+        
         return cell
     }
     
@@ -78,11 +74,11 @@ class TableListViewController: UIViewController, UITableViewDataSource {
                 switch result {
                 case .success(let weathers):
                     strongSelf.weatherData = weathers
-                    strongSelf.tableView.reloadData()
+                    strongSelf.collectionView.reloadData()
                 case .failure(let error):
                     strongSelf.setWeatherError(alert: "Error: \(error.localizedDescription)")
                 }
-                strongSelf.tableView.refreshControl?.endRefreshing()
+                strongSelf.collectionView.refreshControl?.endRefreshing()
             }
         }
     }
@@ -100,13 +96,29 @@ class TableListViewController: UIViewController, UITableViewDataSource {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToDetail" {
-            if let indexPath = tableView.indexPathForSelectedRow, let detailVC = segue.destination as? ViewController {
+            if let indexPath = collectionView.indexPathsForSelectedItems?.first, let detailVC = segue.destination as? ViewController {
                 detailVC.weatherInfo = weatherData[indexPath.row]
-               
             }
         }
     }
     
 }
 
+extension CollectionListViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let screenWidth = UIScreen.main.bounds.width
+        let cellWidth = CGFloat(screenWidth / 4.0)
+        let cellHeight = cellWidth
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+         return 9.0 // 行間のスペース
+     }
+     
+     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+         return 0.0 // 列間のスペース
+     }
 
+}

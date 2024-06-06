@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import YumemiWeather
 
 class ViewController: UIViewController {
     
     let weatherDetail = WeatherDetail()
-    var weatherInfo: Weather?
+    var weatherInfo: Weathers?
     
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var minTempLabel: UILabel!
@@ -22,7 +23,8 @@ class ViewController: UIViewController {
         
         indicator.hidesWhenStopped = true
         if let weather = weatherInfo {
-            setWeather(weather: weather)
+            setWeather(weather: weather.info)
+            self.title = weather.area.rawValue
         }
     }
     

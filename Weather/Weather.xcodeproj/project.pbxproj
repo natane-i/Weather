@@ -10,6 +10,8 @@
 		BB009A5F2C0D53F300FBDA29 /* TableListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB009A5E2C0D53F300FBDA29 /* TableListViewController.swift */; };
 		BB009A612C0D631300FBDA29 /* WeatherList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB009A602C0D631300FBDA29 /* WeatherList.swift */; };
 		BB175E862C06BA3D00B2C3F1 /* WeatherStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB175E852C06BA3D00B2C3F1 /* WeatherStructs.swift */; };
+		BB30FA9D2C1145F600EB8A89 /* CollectionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30FA9C2C1145F600EB8A89 /* CollectionListViewController.swift */; };
+		BB30FA9F2C11466C00EB8A89 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30FA9E2C11466C00EB8A89 /* CollectionViewCell.swift */; };
 		BB8AA5942BFED35500EDF7A4 /* YumemiWeather in Frameworks */ = {isa = PBXBuildFile; productRef = BB8AA5932BFED35500EDF7A4 /* YumemiWeather */; };
 		BB8AA5962BFEFC6100EDF7A4 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8AA5952BFEFC6100EDF7A4 /* LaunchViewController.swift */; };
 		BBD2D2622C0028490032E31D /* WeatherDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD2D2612C0028490032E31D /* WeatherDetail.swift */; };
@@ -25,6 +27,8 @@
 		BB009A5E2C0D53F300FBDA29 /* TableListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableListViewController.swift; sourceTree = "<group>"; };
 		BB009A602C0D631300FBDA29 /* WeatherList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherList.swift; sourceTree = "<group>"; };
 		BB175E852C06BA3D00B2C3F1 /* WeatherStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStructs.swift; sourceTree = "<group>"; };
+		BB30FA9C2C1145F600EB8A89 /* CollectionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionListViewController.swift; sourceTree = "<group>"; };
+		BB30FA9E2C11466C00EB8A89 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		BB8AA5952BFEFC6100EDF7A4 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		BBD2D2612C0028490032E31D /* WeatherDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetail.swift; sourceTree = "<group>"; };
 		BBF545012BFDC412007B5862 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,13 +74,15 @@
 			children = (
 				BBF545042BFDC412007B5862 /* AppDelegate.swift */,
 				BBF545062BFDC412007B5862 /* SceneDelegate.swift */,
-				BBF545082BFDC412007B5862 /* ViewController.swift */,
 				BB8AA5952BFEFC6100EDF7A4 /* LaunchViewController.swift */,
+				BBF545082BFDC412007B5862 /* ViewController.swift */,
 				BB009A5E2C0D53F300FBDA29 /* TableListViewController.swift */,
+				BB30FA9C2C1145F600EB8A89 /* CollectionListViewController.swift */,
 				BBF5450A2BFDC412007B5862 /* Main.storyboard */,
+				BB175E852C06BA3D00B2C3F1 /* WeatherStructs.swift */,
 				BBD2D2612C0028490032E31D /* WeatherDetail.swift */,
 				BB009A602C0D631300FBDA29 /* WeatherList.swift */,
-				BB175E852C06BA3D00B2C3F1 /* WeatherStructs.swift */,
+				BB30FA9E2C11466C00EB8A89 /* CollectionViewCell.swift */,
 				BBF5450D2BFDC413007B5862 /* Assets.xcassets */,
 				BBF5450F2BFDC413007B5862 /* LaunchScreen.storyboard */,
 				BBF545122BFDC413007B5862 /* Info.plist */,
@@ -161,6 +167,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB30FA9F2C11466C00EB8A89 /* CollectionViewCell.swift in Sources */,
+				BB30FA9D2C1145F600EB8A89 /* CollectionListViewController.swift in Sources */,
 				BB009A612C0D631300FBDA29 /* WeatherList.swift in Sources */,
 				BBF545092BFDC412007B5862 /* ViewController.swift in Sources */,
 				BBF545052BFDC412007B5862 /* AppDelegate.swift in Sources */,
