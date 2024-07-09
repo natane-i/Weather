@@ -12,7 +12,7 @@
 このアプリの開発を通じてDelegateについても勉強しましたが、プロトコルを経由することで別ページに値を渡すという考え方に苦戦しました。  
 関数でも良いのではないかと思っていましたが、ノートに自分の言葉でまとめて理解を深めたことで、高い柔軟性を持って処理を記述できることに気づきました。
 
-## 使用させていただいたAPI
+## 使用したAPI
 [YumemiWeather](https://yumemi-inc.github.io/ios-training/documentation/yumemiweather)
 
 
